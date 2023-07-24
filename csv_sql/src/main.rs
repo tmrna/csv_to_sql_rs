@@ -1,5 +1,5 @@
-mod query;
-mod reader;
+mod parser;
+
 fn main() {
     println!("Hello, world!");
 }
