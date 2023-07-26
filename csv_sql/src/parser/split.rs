@@ -72,12 +72,20 @@ impl Split {
 
     fn strip_substr_whitespace(&mut self) {
         let mut new_body = Vec::default();
+
         for substr in self.body.clone() {
-            match get_slice(&substr, get_bounds(&substr)) {
-                Some(new_string) => new_body.push(new_string),
-                None => {},
-            }
+            match get_bounds(&substr) {
+                Ok(boundary) => {
+                    match get_slice(&substr, boundary) {
+                    Ok(new_string) => new_body.push(new_string),
+                    Err(msg) => panic!("{}", msg),
+                    }
+
+                },
+                Err(_msg) => {/*empty or all whitespace discarded*/},
+            };
         }
+
         self.body = new_body;
     }
 }
