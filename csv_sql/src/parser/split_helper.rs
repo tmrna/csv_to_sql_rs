@@ -87,7 +87,6 @@ fn test_get_bounds_some() {
 }
 
 #[test]
-
 fn test_get_slice() {
     let target = "     \t \n\n\n        testing          \n\n\n\t".to_string();
     let bounds = match get_bounds(&target) {
@@ -96,6 +95,6 @@ fn test_get_slice() {
     };
     match get_slice(&target, bounds){
         Ok(substr) => assert_eq!(substr, "testing".to_string()),
-        Err(msg) => assert!(false),
+        Err(_msg) => assert!(false),
     }
 }
